@@ -19,12 +19,14 @@ body {
     background-color: #f5f5f5;
     color: var(--dark-color);
     line-height: 1.6;
+    min-height: 100vh;
+    padding: 1rem;
 }
 
 .container {
-    max-width: 600px;
-    margin: 2rem auto;
-    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1.5rem;
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -32,47 +34,55 @@ body {
 
 header {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 header h1 {
     color: var(--primary-color);
     margin-bottom: 0.5rem;
+    font-size: clamp(1.5rem, 4vw, 2rem);
 }
 
 .task-input {
     display: flex;
+    flex-wrap: wrap;
     gap: 0.5rem;
     margin-bottom: 1.5rem;
 }
 
 .task-input input {
-    flex: 2;
+    flex: 1 1 100%;
     padding: 0.75rem;
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 1rem;
+    min-width: 0;
 }
 
 .task-input select {
-    flex: 1;
+    flex: 1 1 120px;
     padding: 0.75rem;
     border: 1px solid #ddd;
     border-radius: 5px;
+    font-size: 0.9rem;
 }
 
 .task-input button {
-    padding: 0 1.5rem;
+    flex: 1 1 100px;
+    padding: 0.75rem;
     background-color: var(--primary-color);
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 0.9rem;
+    white-space: nowrap;
 }
 
 .filter-buttons {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     gap: 0.5rem;
     margin-bottom: 1.5rem;
 }
@@ -83,11 +93,13 @@ header h1 {
     border: 1px solid #ddd;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 0.9rem;
 }
 
 .filter-btn.active {
     background-color: var(--primary-color);
     color: white;
+    border-color: var(--primary-color);
 }
 
 #task-list {
@@ -117,10 +129,15 @@ header h1 {
 .task-checkbox {
     margin-right: 1rem;
     cursor: pointer;
+    min-width: 18px;
+    min-height: 18px;
 }
 
 .task-text {
     flex: 1;
+    font-size: clamp(0.9rem, 3vw, 1rem);
+    word-break: break-word;
+    padding-right: 0.5rem;
 }
 
 .task-text.completed {
@@ -133,13 +150,18 @@ header h1 {
     border: none;
     color: #dc3545;
     cursor: pointer;
+    font-size: 1rem;
+    padding: 0.25rem;
+    margin-left: 0.5rem;
 }
 
 .task-stats {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding-top: 1rem;
     border-top: 1px solid #eee;
+    font-size: 0.9rem;
 }
 
 #clear-completed {
@@ -147,15 +169,52 @@ header h1 {
     border: none;
     color: #dc3545;
     cursor: pointer;
+    font-size: 0.9rem;
 }
 
-@media (max-width: 600px) {
-    .container {
-        margin: 1rem;
-        padding: 1rem;
+/* Responsive Breakpoints */
+@media (min-width: 480px) {
+    .task-input {
+        flex-wrap: nowrap;
     }
     
-    .task-input {
-        flex-direction: column;
+    .task-input input {
+        flex: 2;
+    }
+    
+    .task-input select {
+        flex: 1;
+    }
+    
+    .task-input button {
+        flex: 0 0 auto;
+        padding: 0.75rem 1.5rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        padding: 2rem;
+        margin: 2rem auto;
+    }
+    
+    .task-input input,
+    .task-input select,
+    .task-input button {
+        font-size: 1rem;
+    }
+    
+    .filter-btn {
+        padding: 0.5rem 1.25rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        max-width: 800px;
+    }
+    
+    .task-item {
+        padding: 1rem;
     }
 }
